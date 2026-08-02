@@ -1,0 +1,36 @@
+/*h1の色を赤にして左揃え*/
+h1{
+  font-size:30px;
+  color:#0008ff;
+  text-align:center;
+}
+
+button{
+  border-radius:8px; /*丸角*/
+  padding:12px 24px; /*ボタンを大きくする*/
+  font-size:18px; /*ボタンのフォントを大きくする*/
+}
+
+/*ホバー*/
+button:hover{
+  background-color:#cae853; /*マウスオーバー時の背景色*/
+  box-shadow:2px 2px 5px rgba(0,0,0,0.3); /*マウスオーバー時の影*/
+}
+
+/*ボタンを中央寄せにする*/
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap:40px;
+}
+
+h2{
+  font-size:30px;
+  text-align:center;
+}
+
+/*開始ボタンが押されたら、開始しましたと表示*/
+p{
+  color:rgb(232, 11, 11);
+  text-align:center;
+}
