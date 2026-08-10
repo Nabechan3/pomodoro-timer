@@ -52,3 +52,37 @@ Go Live（Live Server）で開くことで正常に動作した。
 
 ## 次回やること
 JavaScriptで25:00を1秒ごとに変化させる。
+
+# Day5
+
+##今日の目標
+ポモドーロタイマー 1秒毎に動かす
+
+## できたこと
+- setInterval
+ ↓
+1秒ごとの処理
+ ↓
+letで残り時間を管理
+ ↓
+countdownを1減らす
+ ↓
+/ と % で分・秒に分ける
+ ↓
+Math.floor()
+ ↓
+String()
+ ↓
+padStart()
+ ↓
+if
+ ↓
+clearInterval
+
+## 詰まったこと
+25:00を分と秒に分けること、/と%の使い分け、Math.floorで整数取り出し
+padStart()は文字列で機能するため、sはNumberのためにString(s)で文字列に変換する必要があったこと
+0になったらとめること、clearInterval
+
+## 次回やること
+開始ボタンでカウントダウンが始まるようにする
