@@ -14,7 +14,7 @@ const stopButton = document.getElementById("stop")
 const timer = document.getElementById("timer");
 
 // 中身を変更するletでcountdownという変数を定義、残り時間を秒で管理する
-let countdown = 5 ;//25 * 60;
+let countdown = 25 * 60;
 
 // countdownという変数から、1秒(1000ms)ずつ実行してcountdownを減らしていく
 const timerId = setInterval(function() {
