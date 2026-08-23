@@ -46,6 +46,11 @@ startButton.addEventListener("click",function(){
                 //タイマーは動いていない状態にする
                 isRunning = false;
                 message.textContent = "終了しました"
+                //「終了しました」は目立たせる
+                message.classList.add("message-end");
+                //音を鳴らす
+                const sound = new Audio("sound.mp3");
+                sound.play();
             }
         }, 1000);
          //タイマーが現在動いている状態に変更
@@ -76,4 +81,6 @@ resetButton.addEventListener("click",function(){
     countdown = 25* 60;
     // もともとのtimerの表示(25:00)に戻す
     timer.textContent = "25:00";
+    // 終了しましたをもとの大きさに戻す
+    message.classList.remove("message-end");
 })
