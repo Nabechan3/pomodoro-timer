@@ -15,6 +15,9 @@ let timerId;
 //タイマーが現在動いているかを覚えている変数
 let isRunning = false; //動いていない　true:動いている
 
+//作業時間か休憩時間かを判断する変数
+let isBreak = false; //作業時間　true:休憩時間
+
 //クリックされたら「開始しました/停止しました/リセットしました」と表示//
 const message = document.getElementById("message");
 
@@ -26,9 +29,17 @@ startButton.addEventListener("click",function(){
     //タイマーが動いていないとき、カウントダウンが始まる
     else {
         message.textContent = "開始しました"
-        //カウントダウンが0の場合、countdown = 25 * 60に戻す
-        if (countdown === 0){
-            countdown = 25 *60;
+        //カウントダウンが0の場合
+        if (countdown === 0 ){
+            if (isBreak === true){
+                //休憩が終わった、次は25分
+                countdown = 25 * 60;
+                isBreak = false;
+            }else{
+                //作業時間が終わった、次は休憩
+                countdown = 5 * 60;
+                isBreak = true;  
+            }
         }
         // countdownという変数から、1秒(1000ms)ずつ実行してcountdownを減らしていく
         timerId = setInterval(function() {
@@ -45,9 +56,15 @@ startButton.addEventListener("click",function(){
                 clearInterval(timerId);
                 //タイマーは動いていない状態にする
                 isRunning = false;
-                message.textContent = "終了しました"
-                //「終了しました」は目立たせる
-                message.classList.add("message-end");
+                if (isBreak === false){
+                    message.textContent = "お疲れ様です！5分休憩です"
+                    //「お疲れ様です！5分休憩です」は目立たせる
+                     message.classList.add("message-end");
+                }else{
+                    message.textContent = "休憩終了！作業を始めましょう"
+                    //「休憩終了！作業を始めましょう」は目立たせる
+                     message.classList.add("message-end");
+                }
                 //音を鳴らす
                 const sound = new Audio("sound.mp3");
                 sound.play();
