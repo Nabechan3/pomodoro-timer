@@ -33,4 +33,4 @@
 5. 「リセット」で25:00に戻す
 
 ## 公開URL
-（ここにURL）
+https://nabechan3.github.io/pomodoro-timer/
