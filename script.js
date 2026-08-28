@@ -48,7 +48,7 @@ startButton.addEventListener("click",function(){
             // Math.floorで整数にする、mとsという変数と宣言する
             const m = Math.floor(countdown/60);
             const s = countdown % 60;
-            //sはNumberで、String(s)で文字列に変更、padStartは文字列でないと機能しない
+            //sはNumberのためString(s)で文字列に変更、padStartは文字列(Numberだと機能しない)が2文字になるまで先頭に0を追加する
             const zero_s = String(s).padStart(2,'0');
             timer.textContent = (m) + ":" +(zero_s);
             //カウントダウンが0になったら止める
