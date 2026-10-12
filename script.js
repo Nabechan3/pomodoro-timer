@@ -6,6 +6,13 @@ const startButton = document.getElementById("start");
 // id = "timer"のHTML要素を取得する　タイマー表示(h2)を取得する　25:00をさがしたら、id="timer"のHTML要素を取得する//
 const timer = document.getElementById("timer");
 
+// id = "custom-timer"のHTML要素を取得する
+const workTimeInput = document.getElementById("custom-timer");
+// 開始ボタンを押したら、入力欄の値がコンソールに出力される
+startButton.addEventListener("click",function(){
+    console.log(workTimeInput.value);
+})
+
 // 中身を変更するletでcountdownという変数を定義、残り時間を秒で管理する
 let countdown = 25 * 60;
 
