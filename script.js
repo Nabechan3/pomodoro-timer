@@ -9,12 +9,21 @@ const timer = document.getElementById("timer");
 // id = "custom-timer"のHTML要素を取得する
 const workTimeInput = document.getElementById("custom-timer");
 // 開始ボタンを押したら、入力欄の値がコンソールに出力される
-startButton.addEventListener("click",function(){
-    console.log(workTimeInput.value);
-})
+// startButton.addEventListener("click",function(){
+//     console.log(typeof workTimeInput);  // object
+//     console.log(typeof workTimeInput.value);  //string
+//     console.log(parseInt(workTimeInput.value)); //入力欄の値
+//     console.log(typeof(parseInt(workTimeInput.value)))  //入力の文字列をparseIntでnumberに型変換
+//     console.log(parseInt(workTimeInput.value)*60); //入力欄の数値×60で秒換算
+// })
 
-// 中身を変更するletでcountdownという変数を定義、残り時間を秒で管理する
-let countdown = 25 * 60;
+// 開始ボタンを押したら、コンソールに出力される
+startButton.addEventListener("click",function(){
+    // 中身を変更するletでcountdownという変数を定義、入力欄の値の時間を秒で管理する
+    let countdown = ((parseInt(workTimeInput.value)) * 60);
+    console.log(countdown); //コンソールに秒数を表示
+    console.log(typeof(countdown));
+})
 
 //タイマーIDを入れるための変数、どのタイマーを動かしているか
 let timerId;
