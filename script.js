@@ -18,12 +18,11 @@ const workTimeInput = document.getElementById("custom-timer");
 // })
 
 // 開始ボタンを押したら、コンソールに出力される
-startButton.addEventListener("click",function(){
-    // 中身を変更するletでcountdownという変数を定義、入力欄の値の時間を秒で管理する
-    let countdown = ((parseInt(workTimeInput.value)) * 60);
-    console.log(countdown); //コンソールに秒数を表示
-    console.log(typeof(countdown));
-})
+// startButton.addEventListener("click",function(){
+//     // 中身を変更するletでcountdownという変数を定義、入力欄の値の時間を秒で管理する
+//     let countdown = ((parseInt(workTimeInput.value)) * 60);
+//     console.log(countdown); //コンソールに秒数を表示
+// })
 
 //タイマーIDを入れるための変数、どのタイマーを動かしているか
 let timerId;
@@ -39,48 +38,55 @@ const message = document.getElementById("message");
 
 //startButtonで1秒ずつカウントダウンが始まる
 startButton.addEventListener("click",function(){
-    //タイマーが動いている状態のとき、何もしない
-    if (isRunning === true){
+    if (workTimeInput.value === ''){
+        message.textContent = "作業時間を入力してください"
     }
-    //タイマーが動いていないとき、カウントダウンが始まる
-    else {
-        message.textContent = "開始しました"
-        // countdownという変数から、1秒(1000ms)ずつ実行してcountdownを減らしていく
-        timerId = setInterval(function() {
-            // countdownを1減らす
-            countdown = countdown -1;
-            // Math.floorで整数にする、mとsという変数と宣言する
-            const m = Math.floor(countdown/60);
-            const s = countdown % 60;
-            //sはNumberのためString(s)で文字列に変更、padStartは文字列(Numberだと機能しない)が2文字になるまで先頭に0を追加する
-            const zero_s = String(s).padStart(2,'0');
-            timer.textContent = (m) + ":" +(zero_s);
-            //カウントダウンが0になったら止める
-            if (countdown === 0){
-                //タイマーは動いていない状態にする
-                isRunning = false;
-                if (isBreak === false){
-                    message.textContent = "お疲れ様です！5分休憩です"
-                    //「お疲れ様です！5分休憩です」は目立たせる
-                     message.classList.add("message-end");
-                    countdown = 5 * 60;
-                    isBreak = true;
-                }else{
-                    message.textContent = "休憩終了！作業を始めましょう"
-                    //「休憩終了！作業を始めましょう」は目立たせる
-                     message.classList.add("message-end");
-                    countdown = 25 * 60;
-                    isBreak = true;
+    else{
+        // 中身を変更するletでcountdownという変数を定義、入力欄の値の時間を秒で管理する
+        let countdown = ((parseInt(workTimeInput.value)) * 60);
+        //タイマーが動いている状態のとき、何もしない
+        if (isRunning === true){
+        }
+        //タイマーが動いていないとき、カウントダウンが始まる
+        else {
+            message.textContent = "開始しました"
+            // countdownという変数から、1秒(1000ms)ずつ実行してcountdownを減らしていく
+            timerId = setInterval(function() {
+                // countdownを1減らす
+                countdown = countdown -1;
+                // Math.floorで整数にする、mとsという変数と宣言する
+                const m = Math.floor(countdown/60);
+                const s = countdown % 60;
+                //sはNumberのためString(s)で文字列に変更、padStartは文字列(Numberだと機能しない)が2文字になるまで先頭に0を追加する
+                const zero_s = String(s).padStart(2,'0');
+                timer.textContent = (m) + ":" +(zero_s);
+                //カウントダウンが0になったら止める
+                if (countdown === 0){
+                    //タイマーは動いていない状態にする
+                    isRunning = false;
+                    if (isBreak === false){
+                        message.textContent = "お疲れ様です！5分休憩です"
+                        //「お疲れ様です！5分休憩です」は目立たせる
+                        message.classList.add("message-end");
+                        countdown = 5 * 60;
+                        isBreak = true;
+                    }else{
+                        message.textContent = "休憩終了！作業を始めましょう"
+                        //「休憩終了！作業を始めましょう」は目立たせる
+                        message.classList.add("message-end");
+                        countdown = ((parseInt(workTimeInput.value)) * 60)
+                        isBreak = true;
+                    }
+                    //音を鳴らす
+                    const sound = new Audio("sound.mp3");
+                    sound.play();
                 }
-                //音を鳴らす
-                const sound = new Audio("sound.mp3");
-                sound.play();
-            }
-        }, 1000);
-         //タイマーが現在動いている状態に変更
-        isRunning = true;
+            }, 1000);
+            //タイマーが現在動いている状態に変更
+            isRunning = true;
+        };
     };
- });
+});
 
  // 停止ボタンを押したら、「停止しました」と表示して、カウントダウンを停止する
 document.getElementById("stop");
@@ -96,15 +102,21 @@ stopButton.addEventListener("click",function(){
 document.getElementById("reset");
 const resetButton = document.getElementById("reset")
 resetButton.addEventListener("click",function(){
+    // 中身を変更するletでcountdownという変数を定義、入力欄の値の時間を秒で管理する
+    let countdown = ((parseInt(workTimeInput.value)) * 60);
     message.textContent = "リセットしました"
     // タイマーを停止する
     clearInterval(timerId);
     //タイマーは動いていない状態にする
     isRunning = false;
-    // countdownを25*60に戻す
-    countdown = 25* 60;
-    // もともとのtimerの表示(25:00)に戻す
-    timer.textContent = "25:00";
+    // countdownを入力した分数に戻す
+    // Math.floorで整数にする、mとsという変数と宣言する
+    const m = Math.floor(countdown/60);
+    const s = countdown % 60;
+    //sはNumberのためString(s)で文字列に変更、padStartは文字列(Numberだと機能しない)が2文字になるまで先頭に0を追加する
+    const zero_s = String(s).padStart(2,'0');
+    // 入力した分数に戻す
+    timer.textContent = (m) + ":" +(zero_s);
     // 終了しましたをもとの大きさに戻す
     message.classList.remove("message-end");
 })

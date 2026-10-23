@@ -6,7 +6,8 @@ h1{
 }
 
 input{
-  width:150px;
+  font-size: 20px;
+  width:80px;
   text-align: center; /*箱の中の文字が中央に*/
   margin: 0 auto; /*左右の余白を自動調整*/
   display: block; /*箱そのものを中央に配置*/
@@ -34,6 +35,11 @@ button:hover{
 h2{
   font-size:30px;
   text-align:center;
+}
+
+h3{
+  font-size:20px;
+  text-align: center;
 }
 
 /*開始ボタンが押されたら、開始しましたと表示*/
